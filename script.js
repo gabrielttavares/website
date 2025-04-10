@@ -1,6 +1,56 @@
 document.addEventListener('DOMContentLoaded', () => {
     const terminalInput = document.getElementById('terminal-input');
     const terminalOutput = document.getElementById('terminal-output');
+    const inputText = document.querySelector('.input-text');
+
+    let inputHistory = [];
+    let historyIndex = -1;
+    let currentInput = '';
+
+    // Update input text and cursor position
+    terminalInput.addEventListener('input', () => {
+        inputText.textContent = terminalInput.value;
+    });
+
+    // Handle arrow keys and special keys
+    terminalInput.addEventListener('keydown', (e) => {
+        switch (e.key) {
+            case 'ArrowUp':
+                e.preventDefault();
+                if (historyIndex === -1) {
+                    currentInput = terminalInput.value;
+                }
+                if (historyIndex < inputHistory.length - 1) {
+                    historyIndex++;
+                    terminalInput.value = inputHistory[inputHistory.length - 1 - historyIndex];
+                    inputText.textContent = terminalInput.value;
+                    // Move cursor to end of input
+                    setTimeout(() => {
+                        terminalInput.selectionStart = terminalInput.selectionEnd = terminalInput.value.length;
+                    }, 0);
+                }
+                break;
+            case 'ArrowDown':
+                e.preventDefault();
+                if (historyIndex > 0) {
+                    historyIndex--;
+                    terminalInput.value = inputHistory[inputHistory.length - 1 - historyIndex];
+                } else if (historyIndex === 0) {
+                    historyIndex = -1;
+                    terminalInput.value = currentInput;
+                }
+                inputText.textContent = terminalInput.value;
+                // Move cursor to end of input
+                setTimeout(() => {
+                    terminalInput.selectionStart = terminalInput.selectionEnd = terminalInput.value.length;
+                }, 0);
+                break;
+            case 'ArrowLeft':
+            case 'ArrowRight':
+                // Let default behavior handle cursor movement
+                break;
+        }
+    });
 
     const commands = {
         help: () => `Available commands:
@@ -11,8 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
 - contact: How to reach me
 - quote: Display "life is good afterall"`,
 
-        about: () => `Gabriel Tavares (GTT)
-A passionate developer who believes in creating meaningful experiences through code.`,
+        about: () => `I'm a Software Developer who works professionally on building user-friendly web and mobile solutions, focusing on scalable and robust full-stack applications.`,
 
         clear: () => {
             terminalOutput.textContent = '';
@@ -33,6 +82,12 @@ GitHub: GabrielTTavares`,
     terminalInput.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') {
             const command = terminalInput.value.trim().toLowerCase();
+            if (command) {
+                inputHistory.push(command);
+            }
+            historyIndex = -1;
+            currentInput = '';
+
             const commandLine = `<span class="prompt">contact@gabrielttavares:$</span> ${command}\n`;
             terminalOutput.innerHTML += commandLine;
 
@@ -48,6 +103,7 @@ GitHub: GabrielTTavares`,
             }
 
             terminalInput.value = '';
+            inputText.textContent = '';
             terminalOutput.scrollTop = terminalOutput.scrollHeight;
         }
     });

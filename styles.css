@@ -62,7 +62,7 @@ body {
 #terminal-output {
     margin-bottom: 10px;
     white-space: pre-wrap;
-    color: #ffffff;
+    color: #90EE90;
 }
 
 .input-line {
@@ -76,31 +76,47 @@ body {
     font-weight: bold;
 }
 
+.input-container {
+    position: relative;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+}
 
-#terminal-input {
-    background: transparent;
-    border: none;
+.input-text {
     color: #FFFFFF;
     font-size: 14px;
-    flex-grow: 1;
+    font-family: monospace;
+    white-space: pre;
+}
+
+#terminal-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    color: transparent;
+    font-size: 14px;
     outline: none;
     caret-color: transparent;
 }
 
-#cursor {
-    display: inline-block;
-    background-color: #FFFFFF;
-    width: 8px;
-    height: 1.2em;
-    margin: 0;
+.cursor {
+    color: #FFFFFF;
+    font-size: 14px;
     animation: blink 1s step-end infinite;
-    vertical-align: middle;
+    margin-left: -1ch;
+    position: relative;
+    z-index: 1;
 }
 
 @keyframes blink {
 
-    from,
-    to {
+    0%,
+    100% {
         opacity: 1;
     }
 
@@ -111,13 +127,14 @@ body {
 
 .command-output {
     margin: 5px 0;
-    color: #ffffff;
+    color: #90EE90;
 }
 
 .error-output {
     color: #ff6b6b;
 }
 
+/* Remove the glow effect */
 .terminal::before {
     display: none;
 }
@@ -125,4 +142,5 @@ body {
 .help-command {
     font-weight: bold;
     color: #39FF14;
+    /* Neon Green */
 }
