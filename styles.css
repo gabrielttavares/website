@@ -88,6 +88,7 @@ body {
     font-size: 14px;
     font-family: monospace;
     white-space: pre;
+    min-height: 1em;
 }
 
 #terminal-input {
@@ -102,15 +103,17 @@ body {
     font-size: 14px;
     outline: none;
     caret-color: transparent;
+    font-family: monospace;
 }
 
 .cursor {
     color: #FFFFFF;
     font-size: 14px;
+    font-family: monospace;
     animation: blink 1s step-end infinite;
-    margin-left: -1ch;
     position: relative;
     z-index: 1;
+    min-width: 1ch;
 }
 
 @keyframes blink {

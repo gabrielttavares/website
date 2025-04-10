@@ -2,15 +2,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const terminalInput = document.getElementById('terminal-input');
     const terminalOutput = document.getElementById('terminal-output');
     const inputText = document.querySelector('.input-text');
+    const cursor = document.querySelector('.cursor');
 
     let inputHistory = [];
     let historyIndex = -1;
     let currentInput = '';
 
+    // Function to update cursor position
+    function updateCursorPosition() {
+        const cursorPosition = terminalInput.selectionStart;
+        const textBeforeCursor = terminalInput.value.substring(0, cursorPosition);
+        const textAfterCursor = terminalInput.value.substring(cursorPosition);
+
+        inputText.textContent = textBeforeCursor;
+        cursor.style.marginLeft = '0';
+        cursor.textContent = terminalInput.value[cursorPosition] || '█';
+    }
+
     // Update input text and cursor position
-    terminalInput.addEventListener('input', () => {
-        inputText.textContent = terminalInput.value;
-    });
+    terminalInput.addEventListener('input', updateCursorPosition);
 
     // Handle arrow keys and special keys
     terminalInput.addEventListener('keydown', (e) => {
@@ -23,10 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (historyIndex < inputHistory.length - 1) {
                     historyIndex++;
                     terminalInput.value = inputHistory[inputHistory.length - 1 - historyIndex];
-                    inputText.textContent = terminalInput.value;
-                    // Move cursor to end of input
                     setTimeout(() => {
                         terminalInput.selectionStart = terminalInput.selectionEnd = terminalInput.value.length;
+                        updateCursorPosition();
                     }, 0);
                 }
                 break;
@@ -39,18 +48,22 @@ document.addEventListener('DOMContentLoaded', () => {
                     historyIndex = -1;
                     terminalInput.value = currentInput;
                 }
-                inputText.textContent = terminalInput.value;
-                // Move cursor to end of input
                 setTimeout(() => {
                     terminalInput.selectionStart = terminalInput.selectionEnd = terminalInput.value.length;
+                    updateCursorPosition();
                 }, 0);
                 break;
             case 'ArrowLeft':
             case 'ArrowRight':
-                // Let default behavior handle cursor movement
+                setTimeout(updateCursorPosition, 0);
                 break;
         }
     });
+
+    // Update cursor position on mouse clicks or selection changes
+    terminalInput.addEventListener('mouseup', updateCursorPosition);
+    terminalInput.addEventListener('select', updateCursorPosition);
+    terminalInput.addEventListener('selectionchange', updateCursorPosition);
 
     const commands = {
         help: () => `Available commands:
