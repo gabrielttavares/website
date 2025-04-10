@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabriel Tavares Terminal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            GabrielTTavares (GTT) Not A Corporation. All rights reserved.
+        </div>
+        <pre class="ascii-art">
+                                    /\                                                                
+                              /\  //\\                                                               
+                       /\    //\\///\\\        /\                                                   
+                      //\\  ///\////\\\\  /\  //\\                                                  
+         /\          /  ^ \/^ ^/^  ^  ^ \/^ \/  ^ \                                                  
+        / ^\    /\  / ^   /  ^/ ^ ^ ^   ^\ ^/  ^^  \                                                 
+       /^   \  / ^\/ ^ ^   ^ / ^  ^    ^  \/ ^   ^  \       *                 ______      __         _      __ ______                                
+      /  ^ ^ \/^  ^\ ^ ^ ^   ^  ^   ^   ____  ^   ^  \     /|\              / ____/___ _/ /_  _____(_)__  / //_  __/___ __   ______ _________  _____
+     / ^ ^  ^ \ ^  _\___________________|  |_____^ ^  \   /||o\            / / __/ __ `/ __ \/ ___/ / _ \/ /  / / / __ `/ | / / __ `/ ___/ _ \/ ___/
+    / ^^  ^ ^ ^\  /______________________________\ ^ ^ \ /|o|||\          / /_/ / /_/ / /_/ / /  / /  __/ /  / / / /_/ /| |/ / /_/ / /  /  __(__  ) 
+   /  ^  ^^ ^ ^  /________________________________\  ^  /|||||o|\         \____/\__,_/_.___/_/  /_/\___/_/  /_/  \__,_/ |___/\__,_/_/   \___/____/  
+  /^ ^  ^ ^^  ^    ||___|___||||||||||||___|__|||      /||o||||||\                                                                   <span class="copyright">© 1997</span>
+ / ^   ^   ^    ^  ||___|___||||||||||||___|__|||          | |                                                                                      
+/ ^ ^ ^  ^  ^  ^   ||||||||||||||||||||||||||||||oooooooooo| |ooooooo ,~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~                                                                               
+ooooooooooooooooooooooooooooooooooooooooooooooooooooooooooo| |ooooooo                                                                                
+        </pre>
+        <div class="welcome-message">
+            Welcome to my interactive web terminal.<br>
+            For a list of available commands, type <span class="help-command">'help'</span>.
+        </div>
+        <div class="terminal">
+            <div id="terminal-output"></div>
+            <div class="input-line">
+                <span class="prompt">contact@gabrielttavares:<span id="cursor">█</span>$</span>
+                <input type="text" id="terminal-input" autofocus>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

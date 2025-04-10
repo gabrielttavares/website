@@ -1,0 +1,128 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: monospace;
+}
+
+body {
+    background-color: #2E2E2E;
+    color: #90EE90;
+    padding-top: 20px;
+}
+
+.container {
+    width: 95%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.header {
+    text-align: left;
+    margin-bottom: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    padding-left: 10px;
+}
+
+.ascii-art {
+    color: #90EE90;
+    font-size: 11px;
+    margin-bottom: 10px;
+    line-height: 1.1;
+    text-align: left;
+    white-space: pre;
+    position: relative;
+    padding-left: 10px;
+}
+
+.copyright {
+    position: absolute;
+    bottom: 3em;
+    right: 6em;
+    font-size: 10px;
+    color: #AAAAAA;
+}
+
+.welcome-message {
+    color: #FFC0CB;
+    margin-bottom: 15px;
+    font-size: 14px;
+    padding-left: 10px;
+}
+
+.terminal {
+    background-color: transparent;
+    padding: 0 10px 10px 10px;
+    border-radius: 0;
+    box-shadow: none;
+    min-height: auto;
+}
+
+#terminal-output {
+    margin-bottom: 10px;
+    white-space: pre-wrap;
+    color: #ffffff;
+}
+
+.input-line {
+    display: flex;
+    align-items: center;
+}
+
+.prompt {
+    color: #87CEEB;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+
+#terminal-input {
+    background: transparent;
+    border: none;
+    color: #FFFFFF;
+    font-size: 14px;
+    flex-grow: 1;
+    outline: none;
+    caret-color: transparent;
+}
+
+#cursor {
+    display: inline-block;
+    background-color: #FFFFFF;
+    width: 8px;
+    height: 1.2em;
+    margin: 0;
+    animation: blink 1s step-end infinite;
+    vertical-align: middle;
+}
+
+@keyframes blink {
+
+    from,
+    to {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}
+
+.command-output {
+    margin: 5px 0;
+    color: #ffffff;
+}
+
+.error-output {
+    color: #ff6b6b;
+}
+
+.terminal::before {
+    display: none;
+}
+
+.help-command {
+    font-weight: bold;
+    color: #39FF14;
+}
